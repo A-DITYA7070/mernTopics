@@ -10,3 +10,204 @@ function  greet_Me(name){
 
 greet_Me("aditya") //calling a function.. (execution of a function)
 
+
+==> First class function :-
+    functions are called first class if ::-
+    a) It can be assigned to a variable
+    b) It can be passed as an argument to a function
+    c) It can be returned from a function.
+
+=> Ex in javascript function can be called as first class function.
+case a) function can be assigned to a variable
+      const sum = function add(){
+        console.log("adding");
+      }
+      sum(); //here add() will not work
+      here sum is a variable and function can be assigned to it .
+      => while assigning we can ignore the name "add" and we can continue without it such functions are called anonymous function
+      ex:- const add = function(a,b){ return a+b }
+           add();
+
+case b) function can be passed as an argument to a function 
+     function add(a,b,fn){
+        console.log(fn(a,b));
+     }
+
+     function sum(a,b){
+        return a+b;
+     }
+
+     add(8,9,sum);
+    
+case 3) function can be returned from a function 
+     
+     function sum(){
+        console.log("outer function");
+        return function(){
+            console.log("inner function ");
+        }
+     }
+     sum()();
+    
+    Note :- we can nest the function as many times we want :-
+
+    function sum(){
+        console.log("outer function");
+        return function(){
+            console.log("inner function 1");
+            return function(){
+                console.log("inner function 2");
+            }
+        }
+    }
+    sum() :- outer function
+    sum()() :- outer function 
+               inner function 1
+    sum()()() :- outer function 
+                 inner function 1
+                 inner function 2
+
+since js satisfies all the condition hence function in js are first class citizen.
+
+NOTE ::- =>
+    In javascript it's not mandatory to match the no of paameters with the number of arguments because js is a silent lang.
+    ex. function func(a,b){
+          return a+b;
+       }
+       func(4,5,8) => 11 it will give 11 and ignore the extra argument like 8.
+    ex:-2 function func(a,b){
+             return a+b;
+          }
+        func(4) :- NaN this also does not throw error so this can be a problem. so while dev it should be taken care of.
+
+
+==> In js we can not define parameters still we can pass any number of arguments during calling.
+    This is done with Arguments which is a global object is js all functions have access to it.
+
+
+Ex :-  function add(){
+          const len = arguments.length;
+          let sum=0;
+          for(let i=0;i<len;i++){
+             sum+=arguments[i];
+          }
+          return sum;
+       }
+
+       add(1,2);         => 3
+       add(2,3,4,5,6,7); => 27
+
+
+      ===>>         Arrow function ::--
+
+      function add(a,b){
+        return a+b;
+      }
+
+      const add1 = (a,b) => {
+        return a+b; 
+      }
+
+      add2 = (a,b) => {
+        return a+b;
+      }
+
+      both function are same..
+      fat arrow function is a way of defining functions in new way :-
+      i) it takes less lines of code.
+      ii) code looks cleaner
+      iii) It can be maintained easily.
+
+
+In JavaScript, arrow functions provide a concise syntax for writing anonymous functions. They were introduced in 
+ES6 (ECMAScript 2015) and offer a more streamlined way to define functions, especially for short, one-liner functions. 
+Here are some common use cases for arrow functions:
+
+Shorter Function Definitions:
+Arrow functions provide a more concise syntax compared to traditional function expressions, especially for
+ simple functions.
+
+javascript
+Copy code
+// Traditional function expression
+const add = function(a, b) {
+    return a + b;
+};
+
+// Arrow function
+const add = (a, b) => a + b;
+Implicit Return:
+Arrow functions with a single expression automatically return the result of that expression without needing an
+ explicit return statement.
+
+javascript
+Copy code
+// Traditional function expression
+const double = function(x) {
+    return x * 2;
+};
+
+// Arrow function
+const double = x => x * 2;
+Lexical this Binding:
+Arrow functions do not bind their own this value but inherit it from the enclosing lexical context. This behavior 
+is especially useful when dealing with callbacks or event handlers.
+
+javascript
+Copy code
+// Traditional function expression
+const obj = {
+    value: 10,
+    getValue: function() {
+        return this.value;
+    }
+};
+
+// Arrow function
+const obj = {
+    value: 10,
+    getValue: function() {
+        return this.value;
+    }
+};
+Implicit Arguments Object:
+Arrow functions do not have their own arguments object, making them suitable for use as callbacks in situations
+ where you don't need access to arguments.
+
+javascript
+Copy code
+// Traditional function expression
+function logArguments() {
+    console.log(arguments);
+}
+
+// Arrow function
+const logArguments = (...args) => console.log(args);
+Concise Callbacks:
+Arrow functions are often used as callbacks in array methods like map, filter, and reduce, where brevity is desired.
+
+javascript
+Copy code
+const numbers = [1, 2, 3, 4, 5];
+
+// Traditional function expression
+const squares = numbers.map(function(num) {
+    return num * num;
+});
+
+// Arrow function
+const squares = numbers.map(num => num * num);
+
+Arrow functions offer a more compact and expressive syntax, making code easier to read and write in many cases.
+ However, they may not always be a suitable replacement for traditional function expressions, particularly in cases 
+ where you need access to this or arguments.
+
+
+ Limitation :- 
+ i) no access to arguments 
+ ii) no prototype proterties
+ iii) can't be used with new property
+ iv) Binding of this is difficult.
+
+
+
