@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom</title>
+</head>
+<body style="background-color: #212121; color: aliceblue;">
+     
+    <ul class="language">
+        <li>javascript</li>
+    </ul>
+    
+</body>
+<script>
+    function addLanguage(langName){
+        const li = document.createElement('li');
+        li.innerHTML=`${langName}`
+        const lang = document.querySelector('.language');
+        lang.appendChild(li);
+    }
+    addLanguage("python");  //this is not optimised because it is traversing whole nodes 
+    addLanguage("c++");
+    // optimised version..
+    function addOptiLanguage(langName){
+        const li=document.createElement('li');
+        li.appendChild(document.createTextNode(langName));
+        document.querySelector('.language').appendChild(li);
+    }
+    addOptiLanguage("java"); //this is optimised because it is not traversing the whole tree.
+
+    //EDIT
+    const secondLang = document.querySelector("li:nth-child(2)")
+    secondLang.innerHTML="Mojo";
+
+    const newLi=document.createElement('li');
+    newLi.textContent = "Mojo";
+    secondLang.replaceWith(newLi);
+
+    // edit
+    const firstLang = document.querySelector("li:first-child");
+    firstLang.outerHTML = '<l1>TypeScript</l1>'
+    //remove
+    const lastLang = document.querySelector('li:last-child');
+    lastLang.remove()
+
+</script>
+</html>

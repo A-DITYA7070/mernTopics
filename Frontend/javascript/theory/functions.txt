@@ -1,0 +1,12 @@
+
+functions in javascript ...
+
+==> functions are block of code which has some logic which is repeated multiple times..
+                   
+(keyword)  (name)  (paameters)
+function  greet_Me(name){
+    //func body
+}
+
+greet_Me("aditya") //calling a function.. (execution of a function)
+

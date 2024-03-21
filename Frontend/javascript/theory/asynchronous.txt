@@ -1,0 +1,38 @@
+
+==> javascript
+      i) synchronous
+      ii) single threaded
+
+==> execution context
+     --> execute one line of code at a time
+     each operation waits for the last one to complete before executing
+
+==> blocking code vs non blocking code
+
+i) blocking code => read File sync 
+ii) non blocking code => read file async 
+
+
+
+                  JS ENGINE                                                                          WEB API
+   
+
+   MEMORY STACK             CALL STACK                                                             DOM API
+                                                                                                   set timeout --------
+                                                                                                   set interval        | 
+                                                                                                   fetch               |
+                            func                                                                      |               register
+                            fn                                                                        |               call back
+                            fun                                                                       |                  |
+                            global                                                                    |                  |
+                                                                                                      |                  |
+                             |                                                                        |                  |
+                             |                                                                        |                  |
+                              -------------------------------------------------------cb cb cb ---------------------------
+                             |                                                       task --- queue   |
+                             |                                                                        |
+                             |                                                                        |
+                             |                                                                        |
+                             |                                                                        |
+                             ----------------------------------CB CB CB -------------------------------                                      
+                                                           (High priority)

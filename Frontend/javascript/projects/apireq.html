@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color:#212121; color: #fff;">
+    
+</body>
+<script>
+   const requrl = "https://api.github.com/users/A-DITYA7070";
+   const xhr = new XMLHttpRequest();
+   xhr.open('GET',requrl);
+   
+   xhr.onreadystatechange = function(){
+     if(xhr.readyState === 4){
+        const data = JSON.parse(this.responseText);
+        console.log(data.followers);
+        xhr.send();
+     }
+   }
+
+   const ele = document.createElement("div");
+   ele.id="aditya";
+
+        ele.innerHTML = `
+            <ul> 
+                <li>${data.name}</li>
+                <li>${data.bio}</li>
+                <li></li> 
+            </ul>
+        `;
+        document.body.appendChild(ele);
+
+   
+
+   
+</script>
+</html>
